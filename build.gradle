@@ -8,7 +8,11 @@ archivesBaseName = 'dom4j'
 
 sourceCompatibility = 1.8
 
-tasks.withType(JavaCompile) + tasks.withType(Javadoc) {
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Javadoc) {
     options.encoding = 'UTF-8'
     options.charSet = options.encoding
 }
@@ -24,7 +28,7 @@ dependencies {
             'javax.xml.stream:stax-api:1.0-2',
             'net.java.dev.msv:xsdlib:2013.6.1',
             'javax.xml.bind:jaxb-api:2.2.12',
-            'pull-parser:pull-parser:2',
+            'pull-parser:pull-parser:2.1.10',
             'xpp3:xpp3:1.1.4c',
     )
 
@@ -72,7 +76,7 @@ publishing {
                 url = 'http://dom4j.github.io/'
                 licenses {
                     license {
-                        name = 'BSD 3-clause New License'
+                        name = 'Plexus'
                         url = 'https://github.com/dom4j/dom4j/blob/master/LICENSE'
                     }
                 }
@@ -96,6 +100,12 @@ publishing {
                 }
             }
         }
+    }
+}
+
+jar {
+    manifest {
+      attributes('Automatic-Module-Name': 'org.dom4j')
     }
 }
 

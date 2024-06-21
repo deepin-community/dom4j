@@ -9,7 +9,7 @@ Forwarded: not-needed
  apply plugin: 'maven-publish'
  apply plugin: 'signing'
  
-@@ -103,14 +102,6 @@
+@@ -113,14 +112,6 @@
      useTestNG()
  }
  

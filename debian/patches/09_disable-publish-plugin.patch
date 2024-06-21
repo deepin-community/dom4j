@@ -9,82 +9,35 @@ Forwarded: not-needed
  apply plugin: 'signing'
  
  group = 'org.dom4j'
-@@ -52,78 +51,10 @@
+@@ -56,6 +55,7 @@
      from javadoc.destinationDir
  }
  
--publishing {
--    publications {
--        mavenJava(MavenPublication) {
--            from components.java
--
--            artifact sourcesJar {
--                classifier "sources"
--            }
--
--            artifact javadocJar {
--                classifier "javadoc"
--            }
--
--            pom {
--                name = 'dom4j'
--                description = 'flexible XML framework for Java'
--                url = 'http://dom4j.github.io/'
--                licenses {
--                    license {
--                        name = 'BSD 3-clause New License'
--                        url = 'https://github.com/dom4j/dom4j/blob/master/LICENSE'
--                    }
--                }
--                developers {
--                    developer {
--                        name = 'Filip Jirsák'
--                        email = 'filip@jirsak.org'
--                        url = 'https://github.com/FilipJirsak'
--                    }
--                }
--                scm {
--                    connection = 'scm:git:git@github.com:dom4j/dom4j.git'
--                    developerConnection = 'scm:git:git@github.com:dom4j/dom4j.git'
--                    url = 'git@github.com:dom4j/dom4j.git'
--                }
--
--                withXml {
--                    asNode().dependencies.dependency.findAll { xmlDep ->
--                        xmlDep.appendNode('optional').value = 'true'
--                    }
--                }
--            }
--        }
--    }
--}
--
- test {
++/*
+ publishing {
+     publications {
+         mavenJava(MavenPublication) {
+@@ -101,6 +101,7 @@
+         }
+     }
+ }
++*/
+ 
+ jar {
+     manifest {
+@@ -112,6 +113,7 @@
      useTestNG()
  }
  
--if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')) {
--    publishing {
--        repositories {
--            maven {
--                url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
--                authentication {
--                    basic(BasicAuthentication)
--                }
--                credentials {
--                    username = ossrhUsername
--                    password = ossrhPassword
--                }
--            }
--
--//		mavenSnapshot{
--//		url "https://oss.sonatype.org/content/repositories/snapshots/"
--//			authentication(userName: ossrhUsername, password: ossrhPassword)
--//		}
--        }
--    }
--}
--
++/*
+ if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')) {
+     publishing {
+         repositories {
+@@ -133,6 +135,7 @@
+         }
+     }
+ }
++*/
+ 
  if (project.hasProperty('signing.keyId')) {
      signing {
-         sign publishing.publications.mavenJava
