@@ -4,7 +4,7 @@
 	dh $@ --with maven-repo-helper
 
 override_dh_auto_build:
-	dh_auto_build -- jar javadoc
+	dh_auto_build -- jar
 
 override_dh_auto_test:
 ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))

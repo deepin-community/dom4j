@@ -2,19 +2,13 @@ Description: Fixes the compatibility with the version of xpp2 in Debian
 Origin: backport, https://github.com/dom4j/dom4j/pull/22/files
 --- a/src/main/java/org/dom4j/xpp/ProxyXmlStartTag.java
 +++ b/src/main/java/org/dom4j/xpp/ProxyXmlStartTag.java
-@@ -211,7 +211,7 @@
-      * @throws XmlPullParserException
-      *             DOCUMENT ME!
-      */
--    public void removeAtttributes() throws XmlPullParserException {
-+    public void removeAttributes() throws XmlPullParserException {
-         if (element != null) {
-             element.setAttributes(new ArrayList());
- 
-@@ -221,6 +221,33 @@
+@@ -205,14 +205,31 @@
          }
      }
  
+-    @Override
+-    public boolean removeAttributeByName(String s, String s1) throws XmlPullParserException {
+-        throw new UnsupportedOperationException();
 +    public boolean removeAttributeByName(String namespaceURI, String localName) throws XmlPullParserException {
 +        if (element != null) {
 +            for (Iterator<Attribute> iter = element.attributeIterator(); iter.hasNext();) {
@@ -27,8 +21,11 @@ Origin: backport, https://github.com/dom4j/dom4j/pull/22/files
 +            }
 +        }
 +        return false;
-+    }
-+
+     }
+ 
+-    @Override
+-    public boolean removeAttributeByRawName(String s) throws XmlPullParserException {
+-        throw new UnsupportedOperationException();
 +    public boolean removeAttributeByRawName(String rawName) throws XmlPullParserException {
 +        if (element != null) {
 +            for (Iterator<Attribute> iter = element.attributeIterator(); iter.hasNext();) {
@@ -40,8 +37,6 @@ Origin: backport, https://github.com/dom4j/dom4j/pull/22/files
 +            }
 +        }
 +        return false;
-+    }
-+
-     public String getLocalName() {
-         return element.getName();
      }
+ 
+     /**
